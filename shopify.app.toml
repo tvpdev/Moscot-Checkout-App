@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "Moscot Checkout"
+client_id = "9674055c28b7807d335d0295fadccc4d"
+application_url = "https://tell-man-triumph-later.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_checkout_branding_settings,read_delivery_customizations,read_products,write_checkout_branding_settings,write_delivery_customizations,write_products"
+
+[auth]
+redirect_urls = [
+  "https://tell-man-triumph-later.trycloudflare.com/auth/callback",
+  "https://tell-man-triumph-later.trycloudflare.com/auth/shopify/callback",
+  "https://tell-man-triumph-later.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "moscot-checkout-dev.myshopify.com"
