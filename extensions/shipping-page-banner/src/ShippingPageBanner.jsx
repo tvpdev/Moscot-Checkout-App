@@ -1,23 +1,16 @@
-// import {
-//     BlockSpacer,
-//     reactExtension,
-//     useShippingAddress,
-//     View,
-// } from '@shopify/ui-extensions-react/checkout';
+import "@shopify/ui-extensions/preact";
+import { render } from "preact";
 
-// export default reactExtension(
-//     'purchase.checkout.block.render',
-//     () => <Extension />,
-// );
+export default async () => {
+  render(<Extension />, document.body);
+};
 
-// function Extension() {
-
-//     return (
-//         <>
-//             <View padding="tight" border="base" borderWidth='base' cornerRadius='base' decorative>
-//                 Please specify your complete address.
-//             </View>
-//             <BlockSpacer spacing="tight" />
-//         </>
-//     );
-// }
+function Extension() {
+  return (
+    <s-stack direction="block" gap="small-200">
+      <s-box padding="small-200" border="base" borderRadius="base">
+        <s-text>Please specify your complete address.</s-text>
+      </s-box>
+    </s-stack>
+  );
+}

@@ -1,8 +1,17 @@
-name = "local-pickup-generator"
-type = "local_pickup_delivery_option_generator"
-
 api_version = "unstable"
 
-[build]
-command = ""
-path = "dist/function.wasm"
+[[extensions]]
+name = "local-pickup-generator"
+handle = "local-pickup-generator"
+
+uid = "21e2d9bc-269b-5950-13db-8b2521c1e540e886572c"
+type = "function"
+
+  [[extensions.targeting]]
+  target = "purchase.local-pickup-delivery-option-generator.run"
+  input_query = "src/run.graphql"
+  export = "run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"

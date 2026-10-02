@@ -1,34 +1,25 @@
-import {
-    BlockSpacer,
-    reactExtension,
-    Text,
-    useShippingAddress,
-} from '@shopify/ui-extensions-react/checkout';
+import "@shopify/ui-extensions/preact";
+import { render } from "preact";
+import { useShippingAddress } from "@shopify/ui-extensions/checkout/preact";
 
-export default reactExtension(
-    'purchase.checkout.delivery-address.render-before',
-    () => <Extension />,
-);
+export default async () => {
+  render(<Extension />, document.body);
+};
 
 function Extension() {
+  const address = useShippingAddress();
 
-    const data = useShippingAddress()
-
-    return (
+  return (
+    <s-stack direction="block" gap="small-400">
+      <s-text>All fields are required unless marked as (optional)</s-text>
+      {address?.address1 !== "" && address?.address1 !== undefined && (
         <>
-            <Text>All fields are required unless marked as (optional)</Text>  
-            <BlockSpacer spacing="extraTight" />      
-            {data.address1 !== "" && data.address1 !== undefined &&
-                <>
-                    <Text appearance="critical">
-                        Please specify your complete address.
-                    </Text>
-                    <BlockSpacer spacing="extraTight" />
-                </>
-            }
-            <Text appearance="critical">
-                Please update or confirm address
-            </Text>
+          <s-text tone="critical">
+            Please specify your complete address.
+          </s-text>
         </>
-    );
+      )}
+      <s-text tone="critical">Please update or confirm address</s-text>
+    </s-stack>
+  );
 }

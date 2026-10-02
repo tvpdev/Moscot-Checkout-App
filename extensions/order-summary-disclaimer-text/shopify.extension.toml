@@ -3,12 +3,14 @@
 
 # The version of APIs your extension will receive. Learn more:
 # https://shopify.dev/docs/api/usage/versioning
-api_version = "2024-01"
+api_version = "2026-04"
 
 [[extensions]]
 type = "ui_extension"
 name = "order-summary-disclaimer-text"
 handle = "order-summary-disclaimer-text"
+
+uid = "aba688ad-e894-4927-3f20-cbee313307c74417e7cf"
 
 # Controls where in Shopify your extension will be injected,
 # and the file that contains your extension’s source code. Learn more:

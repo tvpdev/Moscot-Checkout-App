@@ -17,6 +17,10 @@ const NO_CHANGES = {
  * @returns {FunctionRunResult}
  */
 export function run(input) {
+  if (!input?.cart?.lines?.length) {
+    return NO_CHANGES;
+  }
+
   // @ts-ignore
   let hideDeliveryoption = input.cart.lines.map(line => line.merchandise.product.metafield?.value).includes("true");
 

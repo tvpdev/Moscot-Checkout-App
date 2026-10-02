@@ -3,12 +3,14 @@
 
 # The version of APIs your extension will receive. Learn more:
 # https://shopify.dev/docs/api/usage/versioning
-api_version = "2024-01"
+api_version = "2026-04"
 
 [[extensions]]
 type = "ui_extension"
 name = "shipping-page-banner"
 handle = "shipping-page-banner"
+
+uid = "17dba35a-5ba1-8e91-9585-931c7250ab56f5e809f2"
 
 # Controls where in Shopify your extension will be injected,
 # and the file that contains your extension’s source code. Learn more:

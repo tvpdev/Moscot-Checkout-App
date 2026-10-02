@@ -1,0 +1,7 @@
+{
+  "purchase.checkout.delivery-address.render-after": {},
+  "purchase.checkout.delivery-address.render-before": {},
+  "purchase.checkout.reductions.render-before": {},
+  "purchase.checkout.reductions.render-after": {},
+  "purchase.checkout.block.render": {}
+}

@@ -2,7 +2,7 @@
 
 name = "Moscot Checkout"
 client_id = "9674055c28b7807d335d0295fadccc4d"
-application_url = "https://tell-man-triumph-later.trycloudflare.com"
+application_url = "https://frankfurt-actually-males-emissions.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,13 +11,33 @@ scopes = "read_checkout_branding_settings,read_delivery_customizations,read_prod
 
 [auth]
 redirect_urls = [
-  "https://tell-man-triumph-later.trycloudflare.com/auth/callback",
-  "https://tell-man-triumph-later.trycloudflare.com/auth/shopify/callback",
-  "https://tell-man-triumph-later.trycloudflare.com/api/auth/callback"
+  "https://frankfurt-actually-males-emissions.trycloudflare.com/auth/callback",
+  "https://frankfurt-actually-males-emissions.trycloudflare.com/auth/shopify/callback",
+  "https://frankfurt-actually-males-emissions.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
-api_version = "2024-01"
+api_version = "2026-01"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = ["app/uninstalled"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/scopes_update"
+  topics = ["app/scopes_update"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/customers/data_request"
+  compliance_topics = ["customers/data_request"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/customers/redact"
+  compliance_topics = ["customers/redact"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/shop/redact"
+  compliance_topics = ["shop/redact"]
 
 [pos]
 embedded = false

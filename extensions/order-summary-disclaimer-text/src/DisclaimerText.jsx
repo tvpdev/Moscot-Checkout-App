@@ -1,22 +1,15 @@
-import {
-    reactExtension,
-    Text,
-    useApi,
-  } from '@shopify/ui-extensions-react/checkout';
-  
-  export default reactExtension(
-    'purchase.checkout.block.render',
-    () => <Extension />,
+import "@shopify/ui-extensions/preact";
+import { render } from "preact";
+
+export default async () => {
+  render(<Extension />, document.body);
+};
+
+function Extension() {
+  return (
+    <s-text color="subdued">
+      The total amount you pay includes all applicable customs duties & taxes.
+      We guarantee no additional charges on delivery.
+    </s-text>
   );
-  
-  function Extension() {
-
-    const data = useApi();
-
-    return (
-      <Text appearance='decorative'>
-        The total amount you pay includes all applicable customs duties & taxes. We guarantee no additional charges on delivery.	
-      </Text>
-    );
-  }
-  
+}

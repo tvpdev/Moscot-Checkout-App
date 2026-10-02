@@ -1,71 +1,64 @@
-import React, { useEffect, useState } from "react";
-import {
-  reactExtension,
-  BlockStack,
-  Checkbox,
-  ConsentPhoneField,
-  Text,
-  Link,
-  useApplyAttributeChange,
-  InlineStack,
-  InlineLayout,
-  View,
-} from "@shopify/ui-extensions-react/checkout";
+import "@shopify/ui-extensions/preact";
+import { render } from "preact";
+import { useState } from "preact/hooks";
 
-export default reactExtension("purchase.checkout.delivery-address.render-after", () => <App />);
+export default async () => {
+  render(<App />, document.body);
+};
 
 function App() {
   const [checked, setChecked] = useState(false);
   const [phoneFieldValue, setPhoneFieldValue] = useState("");
 
-  const handleChange = () => {
-    setChecked(!checked);
+  const handleCheckboxChange = (event) => {
+    setChecked(event.target.checked);
   };
 
-  const noteUpdate = useApplyAttributeChange();
-
   return (
-    <BlockStack>
-      <Checkbox checked={checked} onChange={handleChange}>
-        Text me with news and offers
-      </Checkbox>
+    <s-stack direction="block" gap="base">
+      <s-checkbox
+        checked={checked}
+        onChange={handleCheckboxChange}
+        label="Text me with news and offers"
+      />
       {checked && (
-        <>
-          <InlineLayout columns={['5%', 'fill']}>
-            <View></View>
-            <View>
-              <InlineStack >
-                <View minInlineSize={361}>
-                  <ConsentPhoneField
-                    label="Mobile phone number"
-                    policy="sms-marketing"
-                    value={phoneFieldValue}
-                    onChange={(newPhoneFieldValue) => {
-                      setPhoneFieldValue(newPhoneFieldValue);
-                      noteUpdate({
-                        type: "updateAttribute",
-                        key: "ConsentPhoneNumber",
-                        value: newPhoneFieldValue,
-                      });
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text size="base" appearance="info">
-                    By signing up via text, you agree to receive recurring automated marketing messages, including cart reminders, at the phone number provided. Consent is not a condition of purchase. Reply STOP to unsubscribe. Reply HELP for help. Message frequency varies. Msg & data rates may apply. View our <Link to="https://moscot.com/policies/privacy-policy">Privacy Policy</Link> and <Link to="https://moscot.com/policies/terms-of-service">Terms of Service</Link>.
-                  </Text>
-                </View>
-              </InlineStack>
-            </View>
-          </InlineLayout>
-        </>
+        <s-grid gridTemplateColumns="5% 1fr" gap="base">
+          <s-box />
+          <s-stack direction="inline" gap="base">
+            <s-box minInlineSize="361px">
+              <s-consent-phone-field
+                label="Mobile phone number"
+                name="consentPhone"
+                value={phoneFieldValue}
+                onChange={async (event) => {
+                  const newPhoneFieldValue = event.target.value;
+                  setPhoneFieldValue(newPhoneFieldValue);
+                  await shopify.applyAttributeChange({
+                    type: "updateAttribute",
+                    key: "ConsentPhoneNumber",
+                    value: newPhoneFieldValue,
+                  });
+                }}
+              />
+            </s-box>
+            <s-text tone="info">
+              By signing up via text, you agree to receive recurring automated
+              marketing messages, including cart reminders, at the phone number
+              provided. Consent is not a condition of purchase. Reply STOP to
+              unsubscribe. Reply HELP for help. Message frequency varies. Msg &
+              data rates may apply. View our{" "}
+              <s-link href="https://moscot.com/policies/privacy-policy">
+                Privacy Policy
+              </s-link>{" "}
+              and{" "}
+              <s-link href="https://moscot.com/policies/terms-of-service">
+                Terms of Service
+              </s-link>
+              .
+            </s-text>
+          </s-stack>
+        </s-grid>
       )}
-    </BlockStack>
+    </s-stack>
   );
 }
-
-
-
-
-
-
